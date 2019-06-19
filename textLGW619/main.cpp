@@ -11,13 +11,23 @@
 using namespace std;
 int main()
 {
-    ofstream out("/Users/s20171105136/Desktop/test.txt/test.txt");
-    if(out.is_open())
+    int a,b;
+
+    ofstream test("/Users/s20171105136/Desktop/test.txt/test.txt");
+        ifstream lgwin("/Users/s20171105136/Desktop/lgwin.txt");
+    if(test.is_open())
     {
-        out <<"1234567890\n";
-        out <<"0987654321\n";
-        out.close();
+        cout <<"file ok"<<endl;
+        lgwin>>a>>b;
+        cout<<a<<"   "<<b<<endl;
+        lgwin.close();
         
+    }
+    if (test.is_open())
+    {
+        test<<"c="<<a+b<<endl;
+        cout<<"c="<<a+b<<endl;
+        test.close();
     }
     return 0;
 }
