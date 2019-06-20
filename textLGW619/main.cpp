@@ -26,7 +26,10 @@ struct student
 };
 int main()
 {
-    FILE *fp1;
+    struct student s[100];
+    FILE *fp1,*fp2;
+    int i=0,j;
+    
     fp1 =fopen("student1.txt","r");
     if(fp1==NULL)
     {
@@ -35,7 +38,24 @@ int main()
     }
     else
     {
+      fscanf(fp1,"%*[^\n]%*c");
+        while(!feof(fp1))
+        {
+            fscanf(fp1,"%d,%[^,],%[^,],%d,%[^,],%[^,],%d,%d,%d,%d,%d",
+                   &s[i].numbers,&s[i].name,&s[i].sex,&s[i].dateofbirth,&s[i].class1,
+                   &s[i].phoneNo,&s[i].judge1,&s[i].judge2,&s[i].judge3,&s[i].judge4,&s[i].judge5);
+            i++;
+        }
+        j=i;
         
+        for(i=0;i<j;i++)
+        {
+            printf("%d,%s,%s,%d,%s,%s,%d,%d,%d,%d,%d\n",s[i].numbers,
+                   s[i].name,s[i].sex,s[i].dateofbirth,s[i].class1,s[i].phoneNo,
+                   s[i].judge1,s[i].judge2,s[i].judge3,s[i].judge4,s[i].judge5);
+        }
+        
+        fclose(fp1);
     }
 
     return 0;
