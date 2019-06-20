@@ -6,28 +6,26 @@
 //  Copyright © 2019 s20171105136. All rights reserved.
 //
 
-#include <iostream>
-#include <fstream>
-using namespace std;
+#include <cstdlib>
+#include <stdio.h>
+struct student
+{
+    
+    int numbers;
+    char name[10];
+    char sex[10];
+    int dateofbirth;
+    char class1[15];
+    char phoneNo[15];
+    int judge1;
+    int judge2;
+    int judge3;
+    int judge4;
+    int judge5;
+    int score;
+};
 int main()
 {
-    int a,b;
 
-    ofstream test("/Users/s20171105136/Desktop/test.txt");
-        ifstream in("/Users/s20171105136/Desktop/lgwin.txt");
-    if(test.is_open())
-    {
-        cout<<"file ok"<<endl;
-        in>>a>>b;
-        cout<<a<<"   "<<b<<endl;
-        in.close();
-        
-    }
-    if (test.is_open())
-    {
-        test<<"c="<<a+b<<endl;
-        cout<< "c="<<a+b<<endl;
-        test.close();
-    }
     return 0;
 }
