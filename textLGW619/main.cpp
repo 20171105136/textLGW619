@@ -26,6 +26,17 @@ struct student
 };
 int main()
 {
+    FILE *fp1;
+    fp1 =fopen("student1.txt","r");
+    if(fp1==NULL)
+    {
+        printf("error");
+        exit(-1);
+    }
+    else
+    {
+        
+    }
 
     return 0;
 }
