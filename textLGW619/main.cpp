@@ -6,57 +6,53 @@
 //  Copyright © 2019 s20171105136. All rights reserved.
 //
 
-#include <cstdlib>
-#include <stdio.h>
-struct student
-{
-    
-    int numbers;
-    char name[10];
-    char sex[10];
-    int dateofbirth;
-    char class1[15];
-    char phoneNo[15];
-    int judge1;
-    int judge2;
-    int judge3;
-    int judge4;
-    int judge5;
-    int score;
+#include<stdio.h>
+#include<string.h>
+struct stu{
+    char num[20];
+    char name[20];
+    char sex[20];
+    char birth[20];
+    char major[20];
+    char phone[20];
+    float judge[100];
+    float avg;
 };
 int main()
 {
-    struct student s[100];
-    FILE *fp1,*fp2;
-    int i=0,j;
-    
-    fp1 =fopen("student1.txt","r");
-    if(fp1==NULL)
+    int i,j,n,m,t;
+    int sum=0;
+    struct stu s[100];
+    scanf("%d %d",&n,&m);
+    for(i=0;i<n;i++)
     {
-        printf("error");
-        exit(-1);
+        scanf("%s %s %s %s %s %s ",&s[i].num,&s[i].name,&s[i].sex,&s[i].birth,&s[i].major,&s[i].phone);
+        for(j=0;j<m;j++)
+        {
+            scanf("%f",&s[i].judge[j]);
+        }
     }
-    else
+    for(i=1;i<n;i++)
+        for(j=0;j<n-i;j++)
+        {
+            if(s[i].judge[j]<s[i].judge[j+1])
+            {
+                t=s[i].judge[j];
+                s[i].judge[j]=s[i].judge[j+1];
+                s[i].judge[j+1]=t;
+            }
+        }
+    for(i=0;i<n;i++)
     {
-      fscanf(fp1,"%*[^\n]%*c");
-        while(!feof(fp1))
+        for(j=1;j<m-1;j++)
         {
-            fscanf(fp1,"%d,%[^,],%[^,],%d,%[^,],%[^,],%d,%d,%d,%d,%d",
-                   &s[i].numbers,&s[i].name,&s[i].sex,&s[i].dateofbirth,&s[i].class1,
-                   &s[i].phoneNo,&s[i].judge1,&s[i].judge2,&s[i].judge3,&s[i].judge4,&s[i].judge5);
-            i++;
+            sum=sum+s[i].judge[j];
         }
-        j=i;
-        
-        for(i=0;i<j;i++)
-        {
-            printf("%d,%s,%s,%d,%s,%s,%d,%d,%d,%d,%d\n",s[i].numbers,
-                   s[i].name,s[i].sex,s[i].dateofbirth,s[i].class1,s[i].phoneNo,
-                   s[i].judge1,s[i].judge2,s[i].judge3,s[i].judge4,s[i].judge5);
-        }
-        
-        fclose(fp1);
+        s[i].avg=sum/(m-2);
+        sum=0;
     }
-
-    return 0;
+    for(i=0;i<n;i++)
+    {
+        printf("%s %s %s %s %s %s %.2f\n",s[i].num,s[i].name,s[i].sex,s[i].birth,s[i].major,s[i].phone,s[i].avg);
+    }
 }
